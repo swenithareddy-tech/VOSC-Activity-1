@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tic-Tac-Toe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game">
+    <h1>Tic-Tac-Toe</h1>
+
+    <div class="modes" role="group" aria-label="Game mode">
+      <button id="mode-friend" class="mode active" type="button">Two players</button>
+      <button id="mode-cpu" class="mode" type="button">Vs computer</button>
+    </div>
+
+    <div class="scores">
+      <div class="score x"><span>X</span><strong id="score-x">0</strong></div>
+      <div class="score draw"><span>Draws</span><strong id="score-draw">0</strong></div>
+      <div class="score o"><span>O</span><strong id="score-o">0</strong></div>
+    </div>
+
+    <p id="status" class="status" aria-live="polite">X's turn</p>
+
+    <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board"></div>
+
+    <div class="actions">
+      <button id="new-round" type="button">New round</button>
+      <button id="reset-scores" class="ghost" type="button">Reset scores</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
