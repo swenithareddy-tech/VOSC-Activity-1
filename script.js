@@ -14,7 +14,7 @@ const scoreEls = {
 const modeFriendBtn = document.getElementById("mode-friend");
 const modeCpuBtn = document.getElementById("mode-cpu");
 
-let board, current, gameOver, vsCpu = false;
+let board, current, gameOver, cpuTimer, vsCpu = false;
 const scores = { X: 0, O: 0, draw: 0 };
 
 // Build the 9 cells once
@@ -30,13 +30,15 @@ for (let i = 0; i < 9; i++) {
 }
 
 function startRound() {
+  clearTimeout(cpuTimer);
   board = Array(9).fill(null);
   current = "X";
   gameOver = false;
-  cells.forEach((c) => {
+  cells.forEach((c, i) => {
     c.textContent = "";
     c.className = "cell";
     c.disabled = false;
+    c.setAttribute("aria-label", `Cell ${i + 1}`);
   });
   setStatus();
 }
@@ -64,6 +66,7 @@ function play(i) {
   cells[i].textContent = current;
   cells[i].classList.add(current.toLowerCase());
   cells[i].disabled = true;
+  cells[i].setAttribute("aria-label", `Cell ${i + 1}, ${current}`);
 
   const result = getWinner(board);
   if (result) {
@@ -80,7 +83,7 @@ function play(i) {
 
   if (vsCpu && current === "O") {
     setStatus("Computer is thinking...");
-    setTimeout(() => play(bestMove()), 400);
+    cpuTimer = setTimeout(() => play(bestMove()), 400);
   }
 }
 
